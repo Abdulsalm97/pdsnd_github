@@ -19,7 +19,7 @@
 import time
 import pandas as pd
 import numpy as np
-
+# Data Source 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -31,9 +31,9 @@ def get_filters():
     while True:
         city = input('Please choose a city from the following cities ( Chicago, New York City, Washington) ').lower()
         print('-'*40)
-        
 
-    
+
+
         if city not in VALID_CITIES :
             print("Sorry, the selected city must be in (  Chicago, New York City, Washington )")
             print('-'*40)
@@ -42,13 +42,13 @@ def get_filters():
         else:
 
             break
-            
+
     while True:
         month = input('Please choose a month from the following months (All , January , February, March, April, May, June) ').lower()
         print('-'*40)
-        
 
-    
+
+
         if month not in MONTHS :
             print("Sorry, the selected month must be in (All , January , February, March, April, May, June)")
             print('-'*40)
@@ -60,9 +60,9 @@ def get_filters():
     while True:
         day = input('Please choose a day from the following days (All,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday) ').lower()
         print('-'*40)
-        
 
-    
+
+
         if day not in DAYS :
             print("Sorry, the selected day must be in (All,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday)")
             print('-'*40)
@@ -71,8 +71,8 @@ def get_filters():
         else:
 
             break
-            
-    
+
+
         print('-'*40)
     return city , month ,day
 
@@ -113,7 +113,7 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
-        
+
     return df
 # df =load_data(city, month, day)
 def time_stats(df):
@@ -126,7 +126,7 @@ def time_stats(df):
 
     common_month=df['Start Time'].dt.month_name().mode()[0]
     print('Most Popular Start Month:', common_month)
-    
+
     # display the most common day of week
     common_day=df['day_of_week'].mode()[0]
     print('Most Popular Start day:', common_day)
@@ -198,37 +198,37 @@ def user_stats(df):
 
     # Display earliest, most recent, and most common year of birth
     if 'Birth Year' in df.columns:
-        
+
 
         print('earliest year of birth' , min(df['Birth Year'])
          ,'\nrecent year of birth' , max(df['Birth Year'])
          ,'\ncommon year of birth' , df['Birth Year'].mode()[0])
     else :
         print('\nSorry, birth Year is not available for this city')
-      
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
 
-    
+
+
 def Show_df(df):
     Count = 0
 
     while True :
         Choose = input('\n Do you want to see raw data?  Please Choose between (Yes or No)').lower()
         print('-'*40)
-        
+
         if Choose in ['yes'] :
-            
+
             Count += 5
             print(df.iloc[Count : Count + 5])
         elif Choose in ['no'] :
-            break 
+            break
         else:
             print('Please enter yes or no to continue')
-            
-            
+
+
 
 def main():
     while True:
@@ -256,7 +256,3 @@ if __name__ == "__main__":
 
 
 # In[ ]:
-
-
-
-
